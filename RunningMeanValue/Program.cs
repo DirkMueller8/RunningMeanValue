@@ -31,6 +31,9 @@ namespace RunningMeanValue
             string str;
             double test = 0;
             bool notYetGoodInput = true;
+            Console.Title = "Calculator of mean value";
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.BackgroundColor = ConsoleColor.Blue;
             Console.WriteLine("This program calculates the running mean value.");
             Console.WriteLine();
             Console.WriteLine("Give first value: ");
@@ -50,7 +53,7 @@ namespace RunningMeanValue
             while (strInput != "a")
             {
                 MeanValue inst = new MeanValue();
-                Console.WriteLine("Give new value ('a' for abort): ");
+                Console.WriteLine("\nGive new value ('a' for abort): ");
                 notYetGoodInput = true;
                 while (notYetGoodInput)
                 {
