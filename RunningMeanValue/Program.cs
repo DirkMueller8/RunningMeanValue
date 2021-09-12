@@ -22,25 +22,31 @@ namespace RunningMeanValue
             return newMean;
         }
     }
+
     class MeanListElement
     {
+        /* This class has the nth value and the associated mean value
+         * stored in a linked list.
+        */
         double listValue;
+        double listMean;
         MeanListElement nextElement;
 
-        public void SetDaten(double listNewValue)
+        public void SetDaten(double listNewValue, double listNewMean)
         {
             listValue = listNewValue;
+            listMean = listNewMean;
             nextElement = null;
         }
-        public MeanListElement AppendValue(double listNewValue)
+        public MeanListElement AppendValue(double listNewValue, double listNewMean)
         {
             nextElement = new MeanListElement();
-            nextElement.SetDaten(listNewValue);
+            nextElement.SetDaten(listNewValue, listNewMean);
             return nextElement;
         }
         public void PrintToScreen()
         {
-            Console.WriteLine($"Value:  {listValue}");
+            Console.WriteLine($"Value:  {listValue}, Mean: {listMean}");
             if (nextElement != null)
                 nextElement.PrintToScreen();
         }
@@ -80,7 +86,7 @@ namespace RunningMeanValue
                 }
             }
             lastMean = firstValue;
-            listenAnfang.SetDaten(firstValue);
+            listenAnfang.SetDaten(firstValue, lastMean);
 
             while (strInput != "a")
             {
@@ -107,7 +113,7 @@ namespace RunningMeanValue
                     }
                 }
                 newMean = inst.RunMean(oldN, lastMean, newValue);
-                listEnd = listEnd.AppendValue(newValue);
+                listEnd = listEnd.AppendValue(newValue, newMean);
                 Console.WriteLine($"New mean value is: {newMean}, n: {oldN + 1}, added value: {newValue}");
                 oldN += 1;
                 lastMean = newMean;
