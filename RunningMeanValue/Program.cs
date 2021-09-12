@@ -59,7 +59,7 @@ namespace RunningMeanValue
             bool notYetGoodInput = true;
 
             MeanListElement listenAnfang = new MeanListElement();
-            MeanListElement listenEnde = listenAnfang;
+            MeanListElement listEnd = listenAnfang;
 
             Console.Title = "Calculator of mean value";
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -99,7 +99,6 @@ namespace RunningMeanValue
                             Environment.Exit(0);
                         }
                         newValue = Convert.ToDouble(str);
-                        listenEnde = listenEnde.AppendValue(newValue);
                         notYetGoodInput = false;
                     }
                     catch
@@ -108,6 +107,7 @@ namespace RunningMeanValue
                     }
                 }
                 newMean = inst.RunMean(oldN, lastMean, newValue);
+                listEnd = listEnd.AppendValue(newValue);
                 Console.WriteLine($"New mean value is: {newMean}, n: {oldN + 1}, added value: {newValue}");
                 oldN += 1;
                 lastMean = newMean;
