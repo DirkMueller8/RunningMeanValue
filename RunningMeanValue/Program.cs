@@ -29,7 +29,7 @@ namespace RunningMeanValue
             int oldN = 1;
             string strInput = "";
             double lastMean;
-            double newValue;
+            double newValue = 0;
             double newMean;
             double firstValue = 0;
             string str;
@@ -68,7 +68,7 @@ namespace RunningMeanValue
                         {
                             Environment.Exit(0);
                         }
-                        test = Convert.ToDouble(str);
+                        newValue = Convert.ToDouble(str);
                         notYetGoodInput = false;
                     }
                     catch
@@ -76,7 +76,6 @@ namespace RunningMeanValue
                         Console.WriteLine("Not a value. Try again:");
                     }
                 }
-                newValue = test;
                 newMean = inst.RunMean(oldN, lastMean, newValue);
                 Console.WriteLine($"New mean value is: {newMean}, n: {oldN + 1}, added value: {newValue}");
                 oldN += 1;
