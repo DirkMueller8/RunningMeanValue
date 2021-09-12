@@ -22,6 +22,29 @@ namespace RunningMeanValue
             return newMean;
         }
     }
+    class MeanListElement
+    {
+        double listValue;
+        MeanListElement nextElement;
+
+        public void SetDaten(double listNewValue)
+        {
+            listValue = listNewValue;
+            nextElement = null;
+        }
+        public MeanListElement AppendValue(double listNewValue)
+        {
+            nextElement = new MeanListElement();
+            nextElement.SetDaten(listNewValue);
+            return nextElement;
+        }
+        public void PrintToScreen()
+        {
+            Console.WriteLine($"Value:  {listValue}");
+            if (nextElement != null)
+                nextElement.PrintToScreen();
+        }
+    }
     class Program
     {
         static void Main(string[] args)
@@ -33,8 +56,11 @@ namespace RunningMeanValue
             double newMean;
             double firstValue = 0;
             string str;
-            double test = 0;
             bool notYetGoodInput = true;
+
+            MeanListElement listenAnfang = new MeanListElement();
+            MeanListElement listenEnde = listenAnfang;
+
             Console.Title = "Calculator of mean value";
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.BackgroundColor = ConsoleColor.Blue;
@@ -54,6 +80,8 @@ namespace RunningMeanValue
                 }
             }
             lastMean = firstValue;
+            listenAnfang.SetDaten(firstValue);
+
             while (strInput != "a")
             {
                 MeanValue inst = new MeanValue();
@@ -66,9 +94,12 @@ namespace RunningMeanValue
                         str = Console.ReadLine();
                         if (str == "a")
                         {
+                            listenAnfang.PrintToScreen();
+                            Console.ReadLine();
                             Environment.Exit(0);
                         }
                         newValue = Convert.ToDouble(str);
+                        listenEnde = listenEnde.AppendValue(newValue);
                         notYetGoodInput = false;
                     }
                     catch
