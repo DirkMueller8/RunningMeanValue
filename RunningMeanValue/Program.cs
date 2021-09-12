@@ -4,6 +4,10 @@ namespace RunningMeanValue
 {
     public class MeanValue
     {
+        /* Method recalculates the mean value based on the new value passed
+         * Input: amount of numbers sofar, previous mean value, new data point
+         * Output: recalculated mean value
+         */
         public double RunMean(int oldN, double lastMean, double newValue)
         {
             double newMean = 0;
